@@ -61,7 +61,25 @@ export default function Home() {
         <a href="#einsatz">Einsatzbereiche</a>
       </div>
       <div className="nav-actions">
-        <a className="login" href={APP_URL}>App öffnen</a>
+        <a
+          href={PLAY_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex", alignItems: "center", gap: "8px",
+            backgroundColor: "#000", color: "#fff", padding: "8px 16px",
+            borderRadius: "10px", textDecoration: "none", border: "1px solid #333",
+            fontSize: "13px", fontWeight: 600,
+          }}
+        >
+          <svg width="14" height="16" viewBox="0 0 20 22" fill="none">
+            <path d="M1 1.5L11 11L1 20.5" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M1 1.5L19 11L1 20.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.4"/>
+            <path d="M1 20.5L11 11L19 11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.7"/>
+            <path d="M1 1.5L11 11L19 11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.7"/>
+          </svg>
+          Google Play Store
+        </a>
         <Button>Kostenlos starten</Button>
       </div>
     </nav>
