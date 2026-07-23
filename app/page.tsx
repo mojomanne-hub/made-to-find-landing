@@ -57,8 +57,8 @@ export default function Home() {
       <Logo />
       <div className="nav-links">
         <a href="#funktion">So funktioniert&apos;s</a>
-        <a href="#features">Features</a>
         <a href="#einsatz">Einsatzbereiche</a>
+        <a href="#features">Features</a>
       </div>
       <div className="nav-actions">
         <a
