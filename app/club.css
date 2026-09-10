@@ -1,0 +1,21 @@
+.shared-cards {
+  width: min(390px, 100%);
+  display: grid;
+  gap: 12px;
+}
+
+.club-card {
+  margin-left: 30px;
+  width: min(365px, calc(100% - 30px));
+  background: linear-gradient(130deg, #132941, #11223a);
+  border-color: #62b9e255;
+}
+
+.club-card .house { background: #65d2a322; color: #79e8b4; }
+.avatar.three { background: #9fd7ff; color: #17365f; }
+.avatar.four { background: #ffe0a2; color: #62491c; }
+
+@media (max-width: 800px) {
+  .collab-visual { height: auto; min-height: 330px; }
+  .club-card { margin-left: 0; width: 100%; }
+}
