@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { AppScreen } from "../components/app-screen";
 import { ArrowRight, Check, ChevronRight, Folder, MapPin, Search } from "../components/icons";
@@ -7,6 +8,8 @@ import { ArrowRight, Check, ChevronRight, Folder, MapPin, Search } from "../comp
 const fade = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: .2 }, transition: { duration: .6 } };
 
 const APP_URL = "https://made-to-find.vercel.app";
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=de.madetofind.app";
+const CONTACT_EMAIL = "madetofind@web.de";
 
 function Logo() { return <a href="#top" className="logo"><span className="logo-mark"><Search size={17} /></span><span>made<span>to</span>find</span></a>; }
 
@@ -18,34 +21,40 @@ function SectionTitle({ eyebrow, title, copy }: { eyebrow: string; title: React.
   return <motion.div {...fade} className="section-title"><p className="eyebrow">{eyebrow}</p><h2>{title}</h2>{copy && <p className="section-copy">{copy}</p>}</motion.div>;
 }
 
+function ContactLink() {
+  const [open, setOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
+  };
+
+  return (
+    <div className="contact-wrap">
+      <a href="#" onClick={(e) => { e.preventDefault(); setOpen(!open); }}>Kontakt</a>
+      {open && (
+        <div className="contact-pop">
+          <span>{CONTACT_EMAIL}</span>
+          <button type="button" onClick={copyEmail}>{copied ? "Kopiert ✓" : "Adresse kopieren"}</button>
+          <a href={`mailto:${CONTACT_EMAIL}`}>Im Mail-Programm öffnen</a>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function PlayStoreBadge() {
   return (
-    <a
-      href={PLAY_STORE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "10px",
-        backgroundColor: "#000",
-        color: "#fff",
-        padding: "10px 20px",
-        borderRadius: "12px",
-        textDecoration: "none",
-        border: "1px solid #333",
-      }}
-    >
-      <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
-        <path d="M1 1.5L11 11L1 20.5" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M1 1.5L19 11L1 20.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.4"/>
-        <path d="M1 20.5L11 11L19 11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.7"/>
-        <path d="M1 1.5L11 11L19 11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.7"/>
-      </svg>
-      <div style={{ lineHeight: 1.2 }}>
-        <div style={{ fontSize: "10px", opacity: 0.7 }}>Jetzt bei</div>
-        <div style={{ fontSize: "15px", fontWeight: 600 }}>Google Play</div>
-      </div>
+    <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex" }}>
+      <img
+        src="https://play.google.com/intl/en_us/badges/static/images/badges/de_badge_web_generic.png"
+        alt="Jetzt bei Google Play"
+        style={{ height: "54px", width: "auto" }}
+      />
     </a>
   );
 }
@@ -56,7 +65,10 @@ export default function Home() {
       <Logo />
       <div className="nav-links">
         <a href="#funktion">So funktioniert&apos;s</a>
-        <Button>Kostenlos starten</Button>
+        <div className="cta-stack">
+          <Button>Kostenlos in der Web-Version starten</Button>
+          <small className="cta-hint">(für iOS-Nutzer)</small>
+        </div>
       </div>
     </nav>
 
@@ -66,18 +78,19 @@ export default function Home() {
         <h1>Nie wieder<br /><em>suchen.</em></h1>
         <p>Made to Find merkt sich, wo deine Dinge liegen. Von Werkzeug über Dokumente bis zur Weihnachtsdeko — finde alles in Sekunden wieder.</p>
         <div className="hero-buttons">
-          <Button>Kostenlos starten</Button>
-          <Button secondary>So funktioniert&apos;s <ChevronRight size={17} /></Button>
+          <div className="cta-stack">
+            <Button>Kostenlos in der Web-Version starten</Button>
+            <small className="cta-hint">(für iOS-Nutzer)</small>
+          </div>
+          <Button secondary href="#funktion">So funktioniert&apos;s <ChevronRight size={17} /></Button>
         </div>
         <div style={{ marginTop: "16px" }}>
           <PlayStoreBadge />
         </div>
         <div className="trust"><span className="avatars"><i>J</i><i>M</i><i>L</i></span><span>Für alle, die lieber finden als suchen.</span></div>
       </motion.div>
-      <motion.div className="phone-stage" initial={{ opacity: 0, x: 40, rotate: 3 }} animate={{ opacity: 1, x: 0, rotate: 0 }} transition={{ duration: .85, delay: .12 }}>
-        <motion.div className="float-card card-key" animate={{ y: [0, -9, 0] }} transition={{ duration: 4, repeat: Infinity }}><span className="item-icon key">⌁</span><div><b>Autoschlüssel</b><small>Flur · Kommode</small></div><Check size={16} /></motion.div>
-        <motion.div className="float-card card-tool" animate={{ y: [0, 10, 0] }} transition={{ duration: 4.5, repeat: Infinity }}><span className="item-icon tool">⌑</span><div><b>Akkuschrauber</b><small>Garage · Regal 2</small></div><Check size={16} /></motion.div>
-        <div className="phone"><div className="speaker" /><AppScreen /><div className="home-bar" /></div>
+      <motion.div className="phone-stage" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .85, delay: .12 }}>
+        <img src="/screenshots/hero-promo.png" alt="Made to Find App - Gegenstände sofort wiederfinden" className="hero-shot" />
       </motion.div>
     </div></section>
 
@@ -86,6 +99,12 @@ export default function Home() {
     <section className="section problem"><div className="problem-card"><div className="scribble">?</div><p className="eyebrow">Kommt dir das bekannt vor?</p><h2>„Wo ist eigentlich<br />der Akkuschrauber?"</h2><div className="question-list"><span>In welchem Karton ist die Weihnachtsdeko?</span><span>Wer hat den Ersatzschlüssel?</span><span>Wo liegen die Batterien?</span></div></div><motion.div {...fade} className="problem-copy"><p className="eyebrow">Suchen kostet Zeit</p><h2>Du besitzt Hunderte von Dingen.<br /><em>Du solltest nicht überlegen müssen, wo sie liegen.</em></h2><p>Jeder sucht. Niemand kann sich alles merken. Made to Find übernimmt das für dich — damit du schnell wieder bei dem bist, was wirklich zählt.</p><a className="text-link" href="#funktion">So einfach funktioniert&apos;s <ArrowRight size={16} /></a></motion.div></section>
 
     <section id="funktion" className="section how"><SectionTitle eyebrow="In drei einfachen Schritten" title={<>Alles im Blick.<br /><em>Ganz ohne Nachdenken.</em></>} copy="Lege Orte an, speichere deine Gegenstände und finde sie genau dann, wenn du sie brauchst." /><div className="steps">
+      <motion.div {...fade} className="step"><span className="step-number">01</span><span className="step-icon"><MapPin size={19} /></span><h3>Ablageort anlegen</h3><p>Erstelle Orte wie Zuhause, Garage oder Keller — bei Bedarf sogar mit Fächern und Ebenen, z. B. für Regale.</p><div className="mini-screen"><AppScreen variant="locations" /></div></motion.div>
+      <motion.div {...fade} transition={{ duration: .5, delay: .1 }} className="step"><span className="step-number">02</span><span className="step-icon"><Folder size={19} /></span><h3>Gegenstände speichern</h3><p>Lege fest, was wo liegt — mit Foto, Beschreibung und genauem Ablageort bis ins Fach.</p><div className="mini-screen"><AppScreen variant="items" /></div></motion.div>
+      <motion.div {...fade} transition={{ duration: .5, delay: .2 }} className="step"><span className="step-number">03</span><span className="step-icon"><Search size={19} /></span><h3>Sofort wiederfinden</h3><p>Suche nach dem Gegenstand und sieh sofort, wo genau er liegt.</p><div className="mini-screen"><AppScreen variant="search" /></div></motion.div>
+    </div></section>
+
+    <section className="section features"><div className="features-copy"><p className="eyebrow">Neu: Noch mehr Struktur</p><h2>Bis ins letzte Fach<br /><em>organisiert.</em></h2><p>Unterteile einen Ablageort in Fächer oder Ebenen — perfekt für Regale, Schränke oder Kisten mit mehreren Ebenen. So findest du nicht nur den richtigen Ort, sondern direkt das richtige Fach.</p></div><motion.div {...fade} className="features-visual"><img src="/screenshots/fach-ebene-promo.png" alt="Ablageort mit Fächern und Ebenen in Made to Find anlegen" className="feature-shot" /><small className="ai-note">Symbolbild, mit KI erstellt</small></motion.div></section>
 
     <section className="section collaborate"><motion.div {...fade} className="collab-visual"><div className="shared-cards"><div className="shared-card"><div className="shared-head"><span className="house">⌂</span><div><b>Unser Zuhause</b><small>12 Ablageorte · 84 Gegenstände</small></div></div><div className="shared-list"><span><i className="avatar one">J</i> Jana hat <b>3 Gegenstände</b> ergänzt</span><span><i className="avatar two">M</i> Max hat <b>Garage</b> aktualisiert</span></div></div><div className="shared-card club-card"><div className="shared-head"><span className="house">⚽</span><div><b>Mein Verein</b><small>8 Mitglieder · 46 Gegenstände</small></div></div><div className="shared-list"><span><i className="avatar three">T</i> Tim hat <b>Trikots</b> ergänzt</span><span><i className="avatar four">S</i> Sarah hat <b>Materialraum</b> aktualisiert</span></div></div></div></motion.div><div className="collab-copy"><p className="eyebrow">Gemeinsam organisiert</p><h2>Ordnung funktioniert<br /><em>zusammen besser.</em></h2><p>Teile Ablageorte und Gegenstände mit deiner Familie, deinem Partner, deinem Team oder deinem Verein. So weiß jeder sofort, wo etwas liegt — ganz ohne Nachfragen.</p><ul><li><Check size={16} /> Gemeinsam auf dem neuesten Stand</li><li><Check size={16} /> Einfach teilen und verwalten</li><li><Check size={16} /> Weniger Fragen, weniger Suchen</li></ul></div></section>
 
@@ -109,8 +128,8 @@ export default function Home() {
       <span>© {new Date().getFullYear()} Made to Find</span>
       <div>
         <a href="https://made-to-find.vercel.app/privacy">Datenschutz</a>
-        <a href="#">Impressum</a>
-        <a href="mailto:madetofind@web.de">Kontakt</a>
+        <a href="/impressum">Impressum</a>
+        <ContactLink />
       </div>
     </footer>
   </main>;
