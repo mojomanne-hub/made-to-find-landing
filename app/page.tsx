@@ -7,7 +7,7 @@ import { ArrowRight, Check, ChevronRight, Folder, MapPin, Search } from "../comp
 
 const fade = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: .2 }, transition: { duration: .6 } };
 
-const APP_URL = "https://made-to-find.vercel.app";
+const APP_URL = "https://app.madetofind.de";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=de.madetofind.app";
 const CONTACT_EMAIL = "madetofind@web.de";
 
@@ -127,7 +127,7 @@ export default function Home() {
       <Logo />
       <span>© {new Date().getFullYear()} Made to Find</span>
       <div>
-        <a href="https://made-to-find.vercel.app/privacy">Datenschutz</a>
+        <a href={`${APP_URL}/privacy`}>Datenschutz</a>
         <a href="/impressum">Impressum</a>
         <ContactLink />
       </div>
