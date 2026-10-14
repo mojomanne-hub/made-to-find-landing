@@ -19,7 +19,7 @@ export default function PrivacyPage() {
           Datenschutzerklärung
         </h1>
         <p style={{ color: "#64748b", marginBottom: "40px" }}>
-          Letzte Aktualisierung: Juli 2025
+          Letzte Aktualisierung: Oktober 2026
         </p>
 
         {[
@@ -29,7 +29,9 @@ export default function PrivacyPage() {
               <p style={{ color: "#94a3b8" }}>
                 Diese App wird privat betrieben. Bei Fragen zum Datenschutz:<br /><br />
                 <strong style={{ color: "#e2e8f0" }}>MaDe to find</strong><br />
-                E-Mail: <a href="mailto:mojomanne@web.de" style={{ color: "#60a5fa" }}>mojomanne@web.de</a>
+                Anschrift: siehe{" "}
+                <a href="https://made-to-find-landing.vercel.app/impressum" style={{ color: "#60a5fa" }}>Impressum</a><br />
+                E-Mail: <a href="mailto:madetofind@web.de" style={{ color: "#60a5fa" }}>madetofind@web.de</a>
               </p>
             )
           },
@@ -43,6 +45,7 @@ export default function PrivacyPage() {
                   <li>Optionaler Anzeigename</li>
                   <li>Von Ihnen eingegebene Inhalte (Ablageorte, Gegenstände)</li>
                   <li>Gruppe und Mitgliedschaften</li>
+                  <li>Technische Daten beim Aufruf (z. B. IP-Adresse, Browser, Zeitpunkt), die der Hosting-Anbieter in Server-Logs verarbeitet</li>
                 </ul>
               </>
             )
@@ -51,12 +54,14 @@ export default function PrivacyPage() {
             title: "3. Zweck der Datenverarbeitung",
             content: (
               <>
-                <p style={{ color: "#94a3b8", marginBottom: "8px" }}>Die erhobenen Daten werden ausschließlich zur Bereitstellung der App-Funktionen verwendet:</p>
+                <p style={{ color: "#94a3b8", marginBottom: "8px" }}>Die erhobenen Daten werden zur Bereitstellung der App-Funktionen verwendet:</p>
                 <ul style={{ color: "#94a3b8", paddingLeft: "20px" }}>
                   <li>Verwaltung von Ablageorten und Gegenständen</li>
                   <li>Geteilter Zugriff innerhalb von Gruppen</li>
                   <li>Benachrichtigungen über Gruppenaktivitäten</li>
+                  <li>Versand von E-Mails (Bestätigung, Passwort zurücksetzen, Einladungen)</li>
                 </ul>
+                <p style={{ color: "#94a3b8", marginTop: "12px" }}>Zusätzlich dient die Verarbeitung der Anzeige von Werbung (siehe Abschnitt „Werbung“).</p>
               </>
             )
           },
@@ -66,6 +71,7 @@ export default function PrivacyPage() {
               <p style={{ color: "#94a3b8" }}>
                 Alle Daten werden sicher bei <strong style={{ color: "#e2e8f0" }}>Supabase</strong> (EU-Server) gespeichert.
                 Die App wird über <strong style={{ color: "#e2e8f0" }}>Vercel</strong> bereitgestellt.
+                Für den Versand von E-Mails nutzen wir <strong style={{ color: "#e2e8f0" }}>Resend</strong>.
               </p>
             )
           },
@@ -73,8 +79,10 @@ export default function PrivacyPage() {
             title: "5. Weitergabe an Dritte",
             content: (
               <p style={{ color: "#94a3b8" }}>
-                Ihre Daten werden nicht an Dritte verkauft oder zu Werbezwecken verwendet.
-                Eine Weitergabe erfolgt nur an die genutzten Infrastruktur-Dienstleister (Supabase, Vercel).
+                Ihre Daten werden nicht an Dritte verkauft. Eine Weitergabe erfolgt nur an die genutzten
+                Dienstleister (Supabase, Vercel, Resend für den E-Mail-Versand) sowie im Rahmen der
+                Werbeanzeigen an Google (siehe Abschnitt „Werbung“). Dabei kann eine Verarbeitung auch
+                außerhalb der EU, etwa in den USA, stattfinden.
               </p>
             )
           },
@@ -84,6 +92,8 @@ export default function PrivacyPage() {
               <p style={{ color: "#94a3b8" }}>
                 Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten.
                 Zur Löschung Ihres Kontos wenden Sie sich bitte per E-Mail an uns.
+                Erteilte Einwilligungen können Sie jederzeit mit Wirkung für die Zukunft widerrufen.
+                Außerdem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren.
               </p>
             )
           },
@@ -92,16 +102,41 @@ export default function PrivacyPage() {
             content: (
               <p style={{ color: "#94a3b8" }}>
                 Die App verwendet technisch notwendige Cookies für die Anmeldung und den aktiven Gruppenkontext.
-                Es werden keine Tracking- oder Werbe-Cookies eingesetzt.
+                Darüber hinaus setzt Google im Zusammenhang mit Werbeanzeigen Cookies bzw. ähnliche Technologien
+                ein, sofern Sie hierzu Ihre Einwilligung erteilen (siehe Abschnitt „Werbung“).
               </p>
             )
           },
           {
-            title: "8. Kontakt",
+            title: "8. Werbung (Google AdSense)",
+            content: (
+              <>
+                <p style={{ color: "#94a3b8", marginBottom: "12px" }}>
+                  Diese App und die zugehörige Website nutzen Google AdSense, einen Dienst der Google Ireland Limited,
+                  Gordon House, Barrow Street, Dublin 4, Irland, zur Anzeige von Werbung.
+                </p>
+                <p style={{ color: "#94a3b8", marginBottom: "12px" }}>
+                  Google und seine Partner können dafür Cookies bzw. ähnliche Technologien verwenden und Daten
+                  wie IP-Adresse, Geräteinformationen und Informationen zur Nutzung verarbeiten, um Anzeigen
+                  auszuspielen, ggf. zu personalisieren und deren Wirkung zu messen. Personalisierte Werbung und
+                  der Einsatz nicht notwendiger Cookies erfolgen nur mit Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO),
+                  soweit eine solche erforderlich ist. Sie können Ihre Einwilligung jederzeit widerrufen.
+                </p>
+                <p style={{ color: "#94a3b8" }}>
+                  Weitere Informationen finden Sie unter{" "}
+                  <a href="https://policies.google.com/technologies/ads?hl=de" style={{ color: "#60a5fa" }}>policies.google.com/technologies/ads</a>.
+                  Personalisierte Werbung können Sie unter{" "}
+                  <a href="https://adssettings.google.com" style={{ color: "#60a5fa" }}>adssettings.google.com</a> verwalten.
+                </p>
+              </>
+            )
+          },
+          {
+            title: "9. Kontakt",
             content: (
               <p style={{ color: "#94a3b8" }}>
-                Bei Fragen zum Datenschutz: {" "}
-                <a href="mailto:mojomanne@web.de" style={{ color: "#60a5fa" }}>mojomanne@web.de</a>
+                Bei Fragen zum Datenschutz:{" "}
+                <a href="mailto:madetofind@web.de" style={{ color: "#60a5fa" }}>madetofind@web.de</a>
               </p>
             )
           },
