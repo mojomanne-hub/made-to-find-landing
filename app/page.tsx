@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 import { AppScreen } from "../components/app-screen";
 import { ArrowRight, Check, ChevronRight, Folder, MapPin, Search } from "../components/icons";
 
-const fade = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: .2 }, transition: { duration: .6 } };
+const fade = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: false, amount: .2 }, transition: { duration: .6 } };
 
 const APP_URL = "https://app.madetofind.de";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=de.madetofind.app";
 const CONTACT_EMAIL = "madetofind@web.de";
 
-function Logo() { return <a href="#top" className="logo"><span className="logo-mark"><Search size={17} /></span><span>made<span>to</span>find</span></a>; }
+function Logo() { return <a href="#top" className="logo"><img src="/logo-mark.png" alt="" className="logo-mark" /><span>MaDe <span>to</span> find</span></a>; }
 
 function Button({ children, secondary = false, href }: { children: React.ReactNode; secondary?: boolean; href?: string }) {
   return <a href={href ?? `${APP_URL}/register`} className={secondary ? "button secondary" : "button"}>{children}{!secondary && <ArrowRight size={17} />}</a>;
@@ -81,7 +81,7 @@ export default function Home() {
       <motion.div className="hero-copy" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }}>
         <div className="pill"><span className="dot" /> Dein digitales Gedächtnis für Zuhause</div>
         <h1>Nie wieder<br /><em>suchen.</em></h1>
-        <p>Made to Find merkt sich, wo deine Dinge liegen. Von Werkzeug über Dokumente bis zur Weihnachtsdeko — finde alles in Sekunden wieder.</p>
+        <p>Made to Find merkt sich, wo deine Dinge liegen. Von Werkzeug über Dokumente bis zur Weihnachtsdeko —<br /> finde alles in Sekunden wieder.</p>
         <div className="hero-buttons">
           <div className="cta-stack">
             <Button>Kostenlos in der Web-Version starten</Button>
@@ -95,13 +95,13 @@ export default function Home() {
         <div className="trust"><span className="avatars"><i>J</i><i>M</i><i>L</i></span><span>Für alle, die lieber finden als suchen.</span></div>
       </motion.div>
       <motion.div className="phone-stage" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .85, delay: .12 }}>
-        <img src="/screenshots/hero-promo.png" alt="Made to Find App - Gegenstände sofort wiederfinden" className="hero-shot" />
+        <img src="/screenshots/hero-overview.jpg" alt="Made to Find App - Übersicht mit Ablageorten, Gegenständen und zuletzt hinzugefügten Inhalten" className="hero-shot" />
       </motion.div>
     </div></section>
 
     <section className="proof"><div><strong>Alles hat seinen Platz.</strong><span>Und du weißt jederzeit, wo er ist.</span></div><div className="proof-items"><span><b>∞</b> Gegenstände</span><span><b>⚡</b> Schnell gefunden</span><span><b>↗</b> Überall verfügbar</span></div></section>
 
-    <section className="section problem"><div className="problem-card"><div className="scribble">?</div><p className="eyebrow">Kommt dir das bekannt vor?</p><h2>„Wo ist eigentlich<br />der Akkuschrauber?"</h2><div className="question-list"><span>In welchem Karton ist die Weihnachtsdeko?</span><span>Wer hat den Ersatzschlüssel?</span><span>Wo liegen die Batterien?</span></div></div><motion.div {...fade} className="problem-copy"><p className="eyebrow">Suchen kostet Zeit</p><h2>Du besitzt Hunderte von Dingen.<br /><em>Du solltest nicht überlegen müssen, wo sie liegen.</em></h2><p>Jeder sucht. Niemand kann sich alles merken. Made to Find übernimmt das für dich — damit du schnell wieder bei dem bist, was wirklich zählt.</p><a className="text-link" href="#funktion">So einfach funktioniert&apos;s <ArrowRight size={16} /></a></motion.div></section>
+    <section className="section problem"><div className="problem-card"><div className="scribble">?</div><p className="eyebrow">Kommt dir das bekannt vor?</p><h2>„Wo ist eigentlich<br />der Akkuschrauber?"</h2><div className="question-list"><span>In welchem Karton ist die Weihnachtsdeko?</span><span>Wer hat den Ersatzschlüssel?</span><span>Wo liegen die Batterien?</span></div></div><motion.div {...fade} className="problem-copy"><p className="eyebrow">Suchen kostet Zeit</p><h2>Du besitzt Hunderte von Dingen.<br /><em>Du solltest nicht überlegen müssen, wo sie liegen.</em></h2><p>Jeder sucht.<br /> Niemand kann sich alles merken.<br /> Made to Find übernimmt das für dich — <br />damit du schnell wieder bei dem bist, was wirklich zählt.</p><a className="text-link" href="#funktion">So einfach funktioniert&apos;s <ArrowRight size={16} /></a></motion.div></section>
 
     <section id="funktion" className="section how"><SectionTitle eyebrow="In drei einfachen Schritten" title={<>Alles im Blick.<br /><em>Ganz ohne Nachdenken.</em></>} copy="Lege Orte an, speichere deine Gegenstände und finde sie genau dann, wenn du sie brauchst." /><div className="steps">
       <motion.div {...fade} className="step"><span className="step-number">01</span><span className="step-icon"><MapPin size={19} /></span><h3>Ablageort anlegen</h3><p>Erstelle Orte wie Zuhause, Garage oder Keller — bei Bedarf sogar mit Fächern und Ebenen, z. B. für Regale.</p><div className="mini-screen"><AppScreen variant="locations" /></div></motion.div>
@@ -109,11 +109,11 @@ export default function Home() {
       <motion.div {...fade} transition={{ duration: .5, delay: .2 }} className="step"><span className="step-number">03</span><span className="step-icon"><Search size={19} /></span><h3>Sofort wiederfinden</h3><p>Suche nach dem Gegenstand und sieh sofort, wo genau er liegt.</p><div className="mini-screen"><AppScreen variant="search" /></div></motion.div>
     </div></section>
 
-    <section id="faecher" className="section features"><div className="features-copy"><p className="eyebrow">Neu: Noch mehr Struktur</p><h2>Bis ins letzte Fach<br /><em>organisiert.</em></h2><p>Unterteile einen Ablageort in Fächer oder Ebenen — perfekt für Regale, Schränke oder Kisten mit mehreren Ebenen. So findest du nicht nur den richtigen Ort, sondern direkt das richtige Fach.</p></div><motion.div {...fade} className="features-visual"><img src="/screenshots/fach-ebene-promo.png" alt="Ablageort mit Fächern und Ebenen in Made to Find anlegen" className="feature-shot" /><small className="ai-note">Symbolbild, mit KI erstellt</small></motion.div></section>
+    <section id="faecher" className="section features"><div className="features-copy"><p className="eyebrow">Neu: Noch mehr Struktur</p><h2>Bis ins letzte Fach<br /><em>organisiert.</em></h2><p>Unterteile einen Ablageort in Fächer oder Ebenen — perfekt für Regale, Schränke oder Kisten mit mehreren Ebenen. <br /> So findest du nicht nur den richtigen Ort, sondern direkt das richtige Fach.</p></div><motion.div {...fade} className="features-visual"><img src="/screenshots/fach-ebene-promo.png" alt="Ablageort mit Fächern und Ebenen in Made to Find anlegen" className="feature-shot" /><small className="ai-note">Symbolbild, mit KI erstellt</small></motion.div></section>
 
-    <section id="gemeinsam" className="section collaborate"><motion.div {...fade} className="collab-visual"><div className="shared-cards"><div className="shared-card"><div className="shared-head"><span className="house">⌂</span><div><b>Unser Zuhause</b><small>12 Ablageorte · 84 Gegenstände</small></div></div><div className="shared-list"><span><i className="avatar one">J</i> Jana hat <b>3 Gegenstände</b> ergänzt</span><span><i className="avatar two">M</i> Max hat <b>Garage</b> aktualisiert</span></div></div><div className="shared-card club-card"><div className="shared-head"><span className="house">⚽</span><div><b>Mein Verein</b><small>8 Mitglieder · 46 Gegenstände</small></div></div><div className="shared-list"><span><i className="avatar three">T</i> Tim hat <b>Trikots</b> ergänzt</span><span><i className="avatar four">S</i> Sarah hat <b>Materialraum</b> aktualisiert</span></div></div></div></motion.div><div className="collab-copy"><p className="eyebrow">Gemeinsam organisiert</p><h2>Ordnung funktioniert<br /><em>zusammen besser.</em></h2><p>Teile Ablageorte und Gegenstände mit deiner Familie, deinem Partner, deinem Team oder deinem Verein. So weiß jeder sofort, wo etwas liegt — ganz ohne Nachfragen.</p><ul><li><Check size={16} /> Gemeinsam auf dem neuesten Stand</li><li><Check size={16} /> Einfach teilen und verwalten</li><li><Check size={16} /> Weniger Fragen, weniger Suchen</li></ul></div></section>
+    <section id="gemeinsam" className="section collaborate"><motion.div {...fade} className="collab-visual"><img src="/screenshots/gemeinsam-promo.png" alt="Gruppe erstellen und Gegenstände sowie Ablageorte in Made to Find teilen" className="collab-shot" /></motion.div><div className="collab-copy"><p className="eyebrow">Gemeinsam organisiert</p><h2>Ordnung funktioniert<br /><em>zusammen besser.</em></h2><p>Teile Ablageorte und Gegenstände mit Familie, Partner, Team oder Verein.<br />So weiß jeder sofort, wo etwas liegt — ganz ohne Nachfragen.</p><ul><li><Check size={16} /> Gemeinsam auf dem neuesten Stand</li><li><Check size={16} /> Einfach teilen und verwalten</li><li><Check size={16} /> Weniger Fragen, weniger Suchen</li></ul></div></section>
 
-    <section id="einsatz" className="section use-cases"><SectionTitle eyebrow="Für alles, was dir wichtig ist" title={<>Ein Ort für <em>deine ganze Welt.</em></>} /><div className="use-grid">{[["⌂", "Zuhause", "Dokumente, Deko, Spielzeug und alles dazwischen."], ["⌑", "Hobby & Werkstatt", "Werkzeug, Maschinen und Ersatzteile griffbereit."], ["▣", "Büro", "Technik, Arbeitsmittel und Unterlagen organisieren."], ["□", "Lager", "Bestände und Material mit Überblick verwalten."]].map(([icon, title, text], i) => <motion.article {...fade} transition={{ duration: .5, delay: i * .08 }} className="use-card" key={title}><span>{icon}</span><h3>{title}</h3><p>{text}</p><ArrowRight size={18} /></motion.article>)}</div></section>
+    <section id="einsatz" className="section use-cases"><SectionTitle eyebrow="Für alles, was dir wichtig ist" title={<>Überall Ordnung,<br /> <em>wo du sie brauchst.</em></>} /><div className="use-grid">{[["⌂", "Zuhause", "Dokumente, Deko, Spielzeug, Essen mit Ablaufdatum und vieles mehr."], ["⌑", "Hobby & Werkstatt", "Werkzeug, Maschinen und Ersatzteile griffbereit."], ["▣", "Büro", "Technik, Arbeitsmittel und Unterlagen organisieren."], ["□", "Lager", "Bestände und Material mit Überblick verwalten."]].map(([icon, title, text], i) => <motion.article {...fade} transition={{ duration: .5, delay: i * .08 }} className="use-card" key={title}><span>{icon}</span><h3>{title}</h3><p>{text}</p><ArrowRight size={18} /></motion.article>)}</div></section>
 
 
     <section id="start" className="final-cta">
