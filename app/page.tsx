@@ -69,6 +69,7 @@ export default function Home() {
           <a href="#faecher">Fächer &amp; Ebenen</a>
           <a href="#gemeinsam">Gemeinsam</a>
           <a href="#einsatz">Einsatzbereiche</a>
+          <a href="#empfehlung">Empfehlung</a>
         </div>
         <div className="cta-stack">
           <Button>Kostenlos in der Web-Version starten</Button>
