@@ -115,6 +115,8 @@ export default function Home() {
 
     <section id="einsatz" className="section use-cases"><SectionTitle eyebrow="Für alles, was dir wichtig ist" title={<>Überall Ordnung,<br /> <em>wo du sie brauchst.</em></>} /><div className="use-grid">{[["⌂", "Zuhause", "Dokumente, Deko, Spielzeug, Essen mit Ablaufdatum und vieles mehr."], ["⌑", "Hobby & Werkstatt", "Werkzeug, Maschinen und Ersatzteile griffbereit."], ["▣", "Büro", "Technik, Arbeitsmittel und Unterlagen organisieren."], ["□", "Lager", "Bestände und Material mit Überblick verwalten."]].map(([icon, title, text], i) => <motion.article {...fade} transition={{ duration: .5, delay: i * .08 }} className="use-card" key={title}><span>{icon}</span><h3>{title}</h3><p>{text}</p><ArrowRight size={18} /></motion.article>)}</div></section>
 
+    <section id="empfehlung" className="section recommend"><SectionTitle eyebrow="Unsere Empfehlung" title={<>Unsere liebsten <em>Ordnungshelfer.</em></>} copy="Boxen, Etiketten und Regale, mit denen Ordnung halten noch leichter fällt." /><div className="recommend-cta"><a href="https://www.amazon.de/s?k=Aufbewahrungsboxen&tag=madetofind-21" target="_blank" rel="nofollow sponsored noopener" className="button">Bei Amazon ansehen <ArrowRight size={17} /></a><small className="ad-note">Werbung · Affiliate-Link</small></div></section>
+
 
     <section id="start" className="final-cta">
       <div className="cta-glow" />

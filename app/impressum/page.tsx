@@ -102,6 +102,18 @@ export default function ImpressumPage() {
 
         <section style={{ marginBottom: "32px" }}>
           <h2 style={{ fontSize: "18px", fontWeight: "600", color: "#fff", marginBottom: "12px" }}>
+            Amazon-Partnerprogramm
+          </h2>
+          <p style={{ color: "#94a3b8" }}>
+            Diese Website nimmt am Partnerprogramm von Amazon Europe S.à.r.l. und Partnerunternehmen teil,
+            das zur Bereitstellung eines Mediums für Websites konzipiert wurde, mittels dessen durch die
+            Platzierung von Werbeanzeigen und Links zu amazon.de Werbekostenerstattung verdient werden kann.
+            Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.
+          </p>
+        </section>
+
+        <section style={{ marginBottom: "32px" }}>
+          <h2 style={{ fontSize: "18px", fontWeight: "600", color: "#fff", marginBottom: "12px" }}>
             Urheberrecht
           </h2>
           <p style={{ color: "#94a3b8" }}>
